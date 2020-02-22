@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <script language="javascript" type="text/javascript" src="https://cdn.jsdelivr.net/npm/p5@0.10.2/lib/p5.min.js"></script>
+        <script language="javascript" src="https://cdn.jsdelivr.net/npm/p5@0.10.2/lib/addons/p5.sound.min.js"></script>
+        <title>Document</title>
+    </head>
+        <style>
+            * {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+            body {
+                background-color:goldenrod;
+            }
+            .container {
+                color: #333;
+                text-align: center;
+            }
+            h1 {
+                font-weight: normal;
+            }
+            .showtime {
+                display: flex;
+                justify-content: space-around;
+                font-size: 1.5em;
+                padding: 1em;
+                text-transform: uppercase;
+            }
+            li{
+                display: inline-block;
+                list-style-type: none;
+                font-size: 1.5em;
+                padding: 1em;
+                text-transform: uppercase;
+            }
+            li span {
+                display: block;
+                font-size: 4.5rem;
+            }
+            html, body {
+                height: 100%;
+                margin: 0;
+            }
+            body {
+                -webkit-box-align: center;
+                -ms-flex-align: center;
+                align-items: center;
+                display: -webkit-box;
+                display: -ms-flexbox;
+                display: flex;
+                font-family: "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+            }
+            .container {
+                margin: 0 auto;
+            }
+        </style>
+    <body>
+        <div class="container">
+            <h1 id="head">Countdown Google Ads:</h1>
+            <ul>
+                <li><span id="timer"></span>Timer</li>
+            </ul>
+        </div>
+        <script>
+            var counter = 0;
+            var timeleft = 600;
+
+            function convertSeconds (s){
+                var min = floor (s / 60);
+                var sec = s % 60;
+                return nf(min,2) + ':' + nf(sec,2);
+            }
+
+            // var ding;
+            // function preload(){
+            //     ding = loadSound("ding.mp3");
+            // }
+
+            function setup(){
+                noCanvas();
+                
+                var timer = select('#timer');
+                timer.html(convertSeconds (timeleft - counter));
+
+                var interval = setInterval(timeIt, 1000);
+
+                function timeIt(){
+                    counter++;
+                    timer.html(convertSeconds (timeleft - counter));
+                    if(counter == timeleft){
+                        // ding.play();
+                        clearInterval(interval);
+                        counter = 0;
+                    }
+                } 
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.12.0/css/mdb.min.css" rel="stylesheet">
+        <title>Document</title>
+    </head>
+        <style>
+            * {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+            body {
+                background-color:darksalmon;
+            }
+            .stopwatch {
+                color: #333;
+                text-align: center;
+                margin: 0 auto;
+            }
+            h1 {
+                font-weight: normal;
+            }
+            .controls {
+                display: flex;
+                justify-content: space-between;
+                font-size: 1.5em;
+                padding: .5em;
+                text-transform: uppercase;
+            }
+            .display {
+                display: block;
+                font-size: 4.5rem;
+            }
+            html, body {
+                height: 100%;
+                margin: 0;
+            }
+            body {
+                -webkit-box-align: center;
+                -ms-flex-align: center;
+                align-items: center;
+                display: -webkit-box;
+                display: -ms-flexbox;
+                display: flex;
+                font-family: "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+            }
+
+        </style>
+    <body>
+        <div class="stopwatch">
+            <div class="controls">
+                <button type="button" class="btn btn-success start">Start</button>
+                <button type="button" class="btn btn-danger stop">Stop</button>
+                <button type="button" class="btn btn-warning reset">Reset</button>
+            </div>
+            <div class="display">
+                <span class="minutes">00</span><span class="seconds">00</span><span class="centiseconds">00</span>
+            </div>
+        </div>
+        <script>
+            var ss = document.getElementsByClassName('stopwatch');
+
+[].forEach.call(ss, function (s) {
+    var currentTimer = 0,
+        interval = 0,
+        lastUpdateTime = new Date().getTime(),
+        start = s.querySelector('button.start'),
+        stop = s.querySelector('button.stop'),
+        reset = s.querySelector('button.reset'),
+        mins = s.querySelector('span.minutes'),
+        secs = s.querySelector('span.seconds'),
+        cents = s.querySelector('span.centiseconds');
+
+    start.addEventListener('click', startTimer);
+    stop.addEventListener('click', stopTimer);
+    reset.addEventListener('click', resetTimer);
+
+    function pad (n) {
+        return ('00' + n).substr(-2);
+    }
+
+    function update () {
+        var now = new Date().getTime(),
+            dt = now - lastUpdateTime;
+
+        currentTimer += dt;
+
+        var time = new Date(currentTimer);
+
+        mins.innerHTML = pad(time.getMinutes());
+        secs.innerHTML = pad(time.getSeconds());
+        cents.innerHTML = pad(Math.floor(time.getMilliseconds() / 10));
+
+        lastUpdateTime = now;
+    }
+
+    function startTimer () {
+        if (!interval) {
+            lastUpdateTime = new Date().getTime();
+            interval = setInterval(update, 1);
+        }
+    }
+
+    function stopTimer () {
+        clearInterval(interval);
+        interval = 0;
+    }
+
+    function resetTimer () {
+        stopTimer();
+
+        currentTimer = 0;
+
+        mins.innerHTML = secs.innerHTML = cents.innerHTML = pad(0);
+    }
+});
+
+        </script>
+    </body>
+</html>
