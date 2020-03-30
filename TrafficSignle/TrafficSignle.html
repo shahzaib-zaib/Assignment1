@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 
 <body>
@@ -37,35 +38,6 @@
             <a class="btn-floating btn-lg btn-default" onclick="go()">Go</a>
         </div>
       </div> 
-    <script>
-        function stop(){
-             document.getElementById('red').className = 'redone';
-             document.getElementById('yellow').className = 'yellow';
-             document.getElementById('green').className = 'green';
-        }
-        function readytogo(){
-            document.getElementById('yellow').className = 'yellowone';
-            document.getElementById('red').className = 'red';
-            document.getElementById('green').className = 'green';
-        }
-        function go(){
-            document.getElementById('green').className = 'greenone';
-            document.getElementById('red').className = 'red';
-            document.getElementById('yellow').className = 'yellow';
-        }
-        function stopp(){
-            var one =  document.getElementById("red").className = "red";
-            var two =  document.getElementById("yellow").className = "yellow";
-            var three =  document.getElementById("green").className = "green"; 
-        }
-        function start(){
-           var one =  document.getElementById("red").className = "one";
-           var two =  document.getElementById("yellow").className = "two";
-           var three =  document.getElementById("green").className = "three";   
-        }
-        function reset(){
-            
-        }
-    </script>
+    <script src="./js/custom.js"></script>
 </body>
 </html>
