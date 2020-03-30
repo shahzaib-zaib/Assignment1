@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+    <style>
+        html{
+            background:turquoise;
+
+        }
+
+        .trafficlight{
+            background: #222;
+            background-image: linear-gradient(transparent 2%, #111 2%, transparent 3%, #111 30%);
+            width: 170px;
+            height: 400px;
+            border-radius: 20px;
+            position: relative;
+            border: solid 5px #333;
+        }
+
+        .trafficlight:before{
+            background: #222;
+            background-image: radial-gradient(#444, #000);
+            content: "";
+            width: 170px;
+            height: 150px;
+            margin: 0 auto;
+            position: absolute;
+            top: -20px;
+            margin-left: 0px;
+            border-radius: 50%;
+            z-index: -1;
+        }
+
+        .trafficlight:after{
+            background: #222;
+            background-image: linear-gradient(-0deg, #333 10%, #333 30%, #000);
+            content: "";
+            width: 50px;
+            height: 700px;
+            margin-left: 60px;
+            position: absolute;
+            top: 150px;
+            z-index: -1;
+        }
+
+        .protector{
+            background: transparent;
+            width: 180px;
+            height: 0;
+            position: absolute;
+            top: 20px;
+            left: -35px;
+            border-right: solid 30px transparent;
+            border-left: solid 30px transparent;
+            border-top: solid 90px #111;
+            border-radius: 10px;
+            z-index: -1;
+        }
+        .protector:nth-child(2){
+            top: 140px;
+        }
+        .protector:nth-child(3){
+            top: 260px;
+        }
+
+        .red{
+            background-color: red;
+            opacity: .3;
+            border: dotted 2px red;
+            background-image: radial-gradient(rgba(165, 42, 42, 0.685), transparent); 
+            background-size: 5px 5px; 
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            position: absolute;
+            top: 20px;
+            left: 35px;
+            box-shadow:  0 0 20px #111 inset, 0 0 10px red;
+        }
+        .redone{
+            background: red;
+            border: dotted 2px red;
+            animation: 13s red infinite;
+            background-image: radial-gradient(rgba(165, 42, 42, 0.685), transparent); 
+            background-size: 5px 5px; 
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            position: absolute;
+            top: 20px;
+            left: 35px;
+            box-shadow:  0 0 20px #111 inset, 0 0 10px red;
+        }
+
+        .yellow{
+            background-color: yellow;
+            opacity: .3;
+            border: dotted 2px yellow;
+            background-image: radial-gradient(rgba(255, 166, 0, 0.568), transparent);
+            background-size: 5px 5px;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            position: absolute;
+            top: 145px;
+            left: 35px;
+            box-shadow:  0 0 20px #111 inset, 0 0 10px yellow;
+        }
+        .yellowone{
+            background: yellow;
+            background-image: radial-gradient(rgba(255, 166, 0, 0.568), transparent);
+            background-size: 5px 5px;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: dotted 2px yellow;
+            position: absolute;
+            top: 145px;
+            left: 35px;
+            box-shadow:  0 0 20px #111 inset, 0 0 10px yellow;
+        }
+
+        .green{
+            background-color: green;
+            opacity: .3;
+            border: dotted 2px green;
+            background-image: radial-gradient(rgba(0, 255, 0, 0.5), transparent); 
+            background-size: 5px 5px;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            position: absolute;
+            top: 270px;
+            left: 35px;
+            box-shadow:  0 0 20px #111 inset, 0 0 10px lime;
+        }
+        .greenone{
+            background: green;
+            background-image: radial-gradient(rgba(0, 255, 0, 0.5), transparent); 
+            background-size: 5px 5px;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: dotted 2px green;
+            position: absolute;
+            top: 270px;
+            left: 35px;
+            box-shadow:  0 0 20px #111 inset, 0 0 10px lime;
+        }
+
+        .cloud {
+            width: 200px; 
+            height: 60px;
+            background: #fff;
+            border-radius: 200px;
+            -moz-border-radius: 200px;
+            -webkit-border-radius: 200px;
+            position:relative; 
+        }
+
+        .cloud:before, 
+        .cloud:after {
+            content: '';
+            position: absolute; 
+            background: #fff;
+            width: 100px; 
+            height: 80px;
+            position: absolute; 
+            top: -15px; 
+            left: 10px;
+            border-radius: 100px;
+            -moz-border-radius: 100px;
+            -webkit-border-radius: 100px;
+            -webkit-transform: rotate(30deg);
+            transform: rotate(30deg);
+            -moz-transform: rotate(30deg);
+        }
+
+        .cloud:after {
+            width: 120px; 
+            height: 120px;
+            top: -55px; 
+            left: auto; 
+            right: 15px;
+        }
+
+        .x1 {
+            -webkit-animation: moveclouds 15s linear infinite;
+            -moz-animation: moveclouds 15s linear infinite;
+            -o-animation: moveclouds 15s linear infinite;
+        }
+
+        .x2 {
+            left: 200px;
+            -webkit-transform: scale(0.6);
+            -moz-transform: scale(0.6);
+            transform: scale(0.6);
+            opacity: 0.6;
+            -webkit-animation: moveclouds 25s linear infinite;
+            -moz-animation: moveclouds 25s linear infinite;
+            -o-animation: moveclouds 25s linear infinite;
+        }
+
+        .x3 {
+            left: -250px; 
+            top: -200px;
+            -webkit-transform: scale(0.8);
+            -moz-transform: scale(0.8);
+            transform: scale(0.8);
+            opacity: 0.8; 
+            -webkit-animation: moveclouds 20s linear infinite;
+            -moz-animation: moveclouds 20s linear infinite;
+            -o-animation: moveclouds 20s linear infinite;
+        }
+
+        .x4 {
+            left: 470px; top: -250px;
+            -webkit-transform: scale(0.75);
+            -moz-transform: scale(0.75);
+            transform: scale(0.75);
+            opacity: 0.75;
+            -webkit-animation: moveclouds 18s linear infinite;
+            -moz-animation: moveclouds 18s linear infinite;
+            -o-animation: moveclouds 18s linear infinite;
+        }
+
+        .x5 {
+            left: -150px; top: -150px;
+            -webkit-transform: scale(0.8);
+            -moz-transform: scale(0.8);
+            transform: scale(0.8);
+            opacity: 0.8;
+            -webkit-animation: moveclouds 20s linear infinite;
+            -moz-animation: moveclouds 20s linear infinite;
+            -o-animation: moveclouds 20s linear infinite;
+        }
+
+        @keyframes moveclouds {
+            0% {margin-left: 1000px;}
+            100% {margin-left: -1000px;}
+        }
+        @-moz-keyframes moveclouds {
+            0% {margin-left: 1000px;}
+            100% {margin-left: -1000px;}
+        }
+        @-o-keyframes moveclouds {
+            0% {margin-left: 1000px;}
+            100% {margin-left: -1000px;}
+        }
+        
+        a:not([href]):not([tabindex]), a:not([href]):not([tabindex]):focus, a:not([href]):not([tabindex]):hover {
+            color: inherit;
+            text-decoration: none;
+        }
+        .btn-floating.btn-lg {
+            height: 61.1px;
+            border-radius: 50%;
+        }
+        a.waves-effect, a.waves-light {
+            display: inline-block;
+        }
+        a:not([href]) {
+            color: inherit;
+            text-decoration: none;
+        }
+        .btn-floating {
+            position: relative;
+            z-index: 1;
+            display: inline-block;
+            padding: 0;
+            margin: 10px;
+            overflow: hidden;
+            vertical-align: middle;
+            cursor: pointer;
+            border-radius: 50%;
+            -webkit-box-shadow: 0 5px 11px 0 rgba(0,0,0,0.18),0 4px 15px 0 rgba(0,0,0,0.15);
+            box-shadow: 0 5px 11px 0 rgba(0,0,0,0.18),0 4px 15px 0 rgba(0,0,0,0.15);
+            -webkit-transition: all 0.2s ease-in-out;
+            transition: all 0.2s ease-in-out;
+            width: 47px;
+            height: 47px;
+        }
+        .btn-default {
+            color: turquoise !important;
+            background-color: #fff !important;
+        }
+        .btn-default:hover{
+            color: #fff !important;
+            background-color: red !important;
+        }
+        .waves-effect {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .btn-lg, .btn-group-lg > .btn {
+            padding: 0.5rem 1rem;
+            font-size: 1.25rem;
+            text-align: center;
+            line-height: 3;
+            border-radius: 0.3rem;
+        }
+
+        .column {
+            float: left;
+            padding-left: 18%;
+            height: 300px;
+        }
+        .column1{
+            float: left;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
+            height: 300px;
+        }
+        .column2{
+            float: right;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
+            height: 300px;
+        }
+        .left, .right {
+            width: 25%;
+        }
+
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+        @keyframes red{
+            0%{opacity: 1}
+            10%{opacity: 1}
+            20%{opacity: 1}
+            30%{opacity: .1}
+            40%{opacity: .1}
+            50%{opacity: .1}
+            60%{opacity: .1}
+            80%{opacity: .1}
+            100%{opacity: .1}
+        }
+
+        @keyframes yellow{
+            0%{opacity: .1}
+            20%{opacity: .1}
+            40%{opacity: 1}
+            50%{opacity: .1}
+            60%{opacity: .1}
+            80%{opacity: .1}
+            100%{opacity: .1}
+        }
+
+        @keyframes green{
+            0%{opacity: .1}
+            10%{opacity: .1}
+            20%{opacity: .1}
+            40%{opacity: .1}
+            50%{opacity: 1}
+            60%{opacity: 1}
+            70%{opacity: 1}
+            80%{opacity: 1}
+            83%{opacity: .1}
+            86%{opacity: 1}
+            89%{opacity: .1}
+            93%{opacity: 1}
+            96%{opacity: .1}
+            100%{opacity: 1}
+        }
+       .one{
+            background: red;
+            border: dotted 2px red;
+            animation: 13s red infinite;
+            background-image: radial-gradient(rgba(165, 42, 42, 0.685), transparent); 
+            background-size: 5px 5px; 
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            position: absolute;
+            top: 20px;
+            left: 35px;
+            box-shadow:  0 0 20px #111 inset, 0 0 10px red;
+            -webkit-animation: 13s red infinite;
+        
+       }
+       .two{
+            background: yellow;
+            background-image: radial-gradient(rgba(255, 166, 0, 0.568), transparent);
+            background-size: 5px 5px;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: dotted 2px yellow;
+            position: absolute;
+            top: 145px;
+            left: 35px;
+            box-shadow:  0 0 20px #111 inset, 0 0 10px yellow;
+            animation: 13s yellow infinite;
+        
+       }
+       .three{
+            background: green;
+            background-image: radial-gradient(rgba(0, 255, 0, 0.5), transparent); 
+            background-size: 5px 5px;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: dotted 2px green;
+            position: absolute;
+            top: 270px;
+            left: 35px;
+            box-shadow:  0 0 20px #111 inset, 0 0 10px lime;
+            animation: 13s green infinite;
+        
+       }
+    </style>
+<body>
+    <div id="clouds">
+        <div class="cloud x1"></div>
+        <div class="cloud x2"></div>
+        <div class="cloud x3"></div>
+        <div class="cloud x4"></div>
+        <div class="cloud x5"></div>
+    </div>
+    <div class="row">
+        <div class="column1 left">
+            <a class="btn-floating btn-lg btn-default" onclick="stopp()">Stop</a>
+            <a class="btn-floating btn-lg btn-default" onclick="start()">Start</a>
+            <a class="btn-floating btn-lg btn-default" onclick="reset()">Reset</a>
+        </div>
+        <div class="column middle">
+            <div class="trafficlight">
+                <div class="protector" ></div>
+                <div class="protector"></div>
+                <div class="protector"></div>
+                <div class="red" id="red" onclick="stop()"></div>
+                <div class="yellow" id="yellow" onclick="readytogo()" ></div>
+                <div class="green" id="green" onclick="go()" ></div>
+            </div>
+        </div>
+        <div class="column2 right">
+            <a class="btn-floating btn-lg btn-default" onclick="stop()">Stop</a>
+            <a class="btn-floating btn-lg btn-default" onclick="readytogo()">Ready</a>
+            <a class="btn-floating btn-lg btn-default" onclick="go()">Go</a>
+        </div>
+      </div> 
+    <script>
+        function stop(){
+             document.getElementById('red').className = 'redone';
+             document.getElementById('yellow').className = 'yellow';
+             document.getElementById('green').className = 'green';
+        }
+        function readytogo(){
+            document.getElementById('yellow').className = 'yellowone';
+            document.getElementById('red').className = 'red';
+            document.getElementById('green').className = 'green';
+        }
+        function go(){
+            document.getElementById('green').className = 'greenone';
+            document.getElementById('red').className = 'red';
+            document.getElementById('yellow').className = 'yellow';
+        }
+        function stopp(){
+            var one =  document.getElementById("red").className = "red";
+            var two =  document.getElementById("yellow").className = "yellow";
+            var three =  document.getElementById("green").className = "green"; 
+        }
+        function start(){
+           var one =  document.getElementById("red").className = "one";
+           var two =  document.getElementById("yellow").className = "two";
+           var three =  document.getElementById("green").className = "three";   
+        }
+        function reset(){
+            
+        }
+    </script>
+</body>
+</html>
